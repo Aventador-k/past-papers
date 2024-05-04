@@ -88,6 +88,8 @@
 
   <script src="/js.js"></script>
 
-
+  @push('styles')
+  @vite('resources/css/app.css')
+  @endpush
 @endsection
 
