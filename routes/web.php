@@ -4,6 +4,10 @@ use App\Http\Controllers\PaperController;
 use App\Http\Middleware\GetToken;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Http;
+
+use App\Http\Controllers\AuthController;
+use App\Models\register;
+
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
@@ -25,6 +29,7 @@ Route::get('/', function () {
 Route::get("/auth/login" , function(){
     return view("login");
 });
+
 
 Route::get("/stk" , function(){
     return view("pay");
@@ -74,5 +79,10 @@ Route::controller(PaperController::class)->group(function(){
         Route::get("new" , "create");
     });
 });
+
+Route::get("/dashboard" , function(){
+    return view("dashboard");
+});
+Route::post('/login', [AuthController::class,'login']);
 
 
