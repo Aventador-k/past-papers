@@ -21,14 +21,16 @@
           practice and brain juice.
         </p>
       </div>
-      <button type="submit">LEARN MORE</button>
+      <button type="submit" class="button">
+        <a href="./table2/index.html">EXAMS</a>
+      </button>
     </div>
   </section>
 
   <section class="b">
     <div class="container">
       <div class="image">
-        <img src="/images/outdore.jpg" alt="" />
+        <img src="./images/outdore.jpg" alt="" />
       </div>
       <div class="content">
         <h2><u>ABOUT-US</u></h2>
@@ -56,7 +58,7 @@
         </p>
       </div>
       <div class="image">
-        <img src="/images/mathbord.jpg" alt="" />
+        <img src="./images/mathbord.jpg" alt="" />
       </div>
     </div>
   </section>
@@ -64,7 +66,7 @@
   <section class="d">
     <div class="container">
       <div class="image">
-        <img src="/images/yellow-man.jpg" alt="" />
+        <img src="./images/yellow-man.jpg" alt="" />
       </div>
       <div class="content">
         <h2><u>WHAT-SETS-US-APART</u></h2>
@@ -73,14 +75,16 @@
           providers to ensure that all materials available on our platform are
           accurate, up-to-date, and aligned with the latest exam standards and
           requirements. <br />
+          <br />
           Competitive Pricing: Enjoy competitive prices on all our products,
           with regular discounts and promotions to help you stretch your
           budget further without compromising on quality. <br />
+          <br />
           Exceptional Customer Service: Our dedicated customer support team is
           here to assist you with any questions, concerns, or technical issues
           you may encounter. We're committed to providing prompt, friendly,
           and personalized service to ensure your shopping experience is
-          smooth and hassle-free.
+          smooth and hassle-free.
         </p>
       </div>
     </div>
