@@ -8,6 +8,7 @@
       <a href="#">HOME</a>
       <a href="#">ABOUT</a>
       <a href="#">CONTACT</a>
+      <a href="auth/login">Login</a>
     </nav>
   </section>
   <section class="section">
@@ -15,7 +16,7 @@
     <div class="head">
       <div class="content">
         <u><h1>NAC</h1></u>
-        <h2>National Assessment Consortings</h2>
+        <h2>National Assessment Consortium</h2>
         <p>
           The ability to bring you good quality material, for knowledge
           practice and brain juice.
