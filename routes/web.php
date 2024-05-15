@@ -6,10 +6,13 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Http;
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PaymentController;
 use App\Models\register;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,7 +68,7 @@ Route::post("/pay" , function(Request $request){
         "PartyA" => "254758262427",
         "PartyB" => "174379",
         "PhoneNumber" =>"254758262427",
-        "CallBackURL" => "https://shoe-app-production.up.railway.app/callback",
+        "CallBackURL" => "https://tasty-walls-remain.loca.lt/callback",
         "AccountReference" => "Test",
         "TransactionDesc" => "Test"
     ]);
@@ -78,6 +81,19 @@ Route::controller(PaperController::class)->group(function(){
         Route::get("" , "index");
         Route::get("new" , "create");
     });
+});
+
+Route::controller(PaymentController::class)->group(function(){
+    Route::prefix("payments")->group(function(){
+        Route::get("details/{id}" , "render_details_form");
+        Route::post("pay/{id}" , "initiate_payment");
+        Route::get("success" , "success_pay")->name('paypal_success');
+        Route::get("cancel" , "cancel_pay")->name('paypal_cancel');
+    });
+});
+
+Route::post("/callback" , function(Request $request){
+
 });
 
 Route::get("/dashboard" , function(){

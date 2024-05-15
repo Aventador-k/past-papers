@@ -35,7 +35,9 @@
                 <tr>
                     <td>{{ $paper->year }}</td>
                     <td>{{ $paper->title }}</td>
-                    <td><a href="#" class="btn">PURCHASE</a></td>
+                    <td>
+                        <a href="/payments/details/{{ $paper->id }}"  class="btn">PURCHASE</a>
+                    </td>
 
                 </tr>
                 @endforeach
