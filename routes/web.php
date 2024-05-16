@@ -85,4 +85,20 @@ Route::get("/dashboard" , function(){
 });
 Route::post('/login', [AuthController::class,'login']);
 
+Route::get('/customers', function () {
+    return view('admins.customers');
+});
+Route::get('/category', function () {
+    return view('admins.category');
+});
+Route::get('/products', function () {
+    return view('admins.products');
+});
+Route::get('/orders', function () {
+    return view('admins.orders');
+});
+// i tried adding this as a route , didnt manage, check on how we can manage to add the dashboard
+// Route::get('/upload-papers', function () {
+//     return view('livewire.upload-papers');
+// });
 
