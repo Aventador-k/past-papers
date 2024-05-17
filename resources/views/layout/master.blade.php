@@ -8,6 +8,7 @@
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
+
    @yield('title')
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
@@ -28,46 +29,59 @@
         Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
     -->
       <div class="logo">
-        {{-- <a class="simple-text logo-mini">
-         Welcome {{ Auth::user()->email }}
-        </a> --}}
-        <br>
-        <a class="simple-text logo-normal">
-           To NAC
+        <a href="http://www.creative-tim.com" class="simple-text logo-mini">
+          SA
+        </a>
+        <a href="http://www.creative-tim.com" class="simple-text logo-normal">
+          NAC
         </a>
       </div>
       <div class="sidebar-wrapper" id="sidebar-wrapper">
         <ul class="nav">
-          <li>
+          {{-- <li>
             <a href="./dashboard.html">
               <i class="now-ui-icons design_app"></i>
               <p>Dashboard</p>
             </a>
+          </li> --}}
+          <li>
+            <a href="./customers"  onclick="showCustomers()">
+              <i class="fa fa-users"></i>
+              <p>Customers</p>
+            </a>
           </li>
           <li>
-            <a href="./map.html">
+            <a href="./category">
               <i class="now-ui-icons location_map-big"></i>
-              <p>Papers</p>
+              <p>Category</p>
             </a>
           </li>
+
           <li>
-            <a href="/mail.">
+            <a href="./notifications.html">
               <i class="now-ui-icons ui-1_bell-53"></i>
-              <p>Mail</p>
+              <p>Notifications</p>
             </a>
           </li>
           <li>
-            <a href="./user.html">
+            <a href="./products">
               <i class="now-ui-icons users_single-02"></i>
-              <p>User</p>
+              <p>Products</p>
             </a>
           </li>
-          <li class="active ">
-            <a href="./tables.html">
-              <i class="now-ui-icons design_bullet-list-67"></i>
-              <p>Table List</p>
+          <li class=" ">
+            <a href="./orders">
+              <i class="now-ui-icons  users_single-02 "></i>
+              <p>Orders</p>
             </a>
           </li>
+          <li class=" ">
+            <a href="./upload-papers">
+              <i class="now-ui-icons  users_single-02 "></i>
+              <p>Upload Papers</p>
+            </a>
+          </li>
+
 
         </ul>
       </div>
@@ -114,22 +128,19 @@
                   </p>
                 </a>
               </li>
+
+        </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="now-ui-icons location_world"></i>
                   <p>
-                    <span class="d-lg-none d-md-block">Some Actions</span>
+                    <span class="now-ui-icons users_single-02"></span>
                   </p>
                 </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
+                <div class="dropdown-menu dropdown-menu-right" >
+                  <a class="dropdown-item" href=".//">Logout</a>
+
                 </div>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#pablo">
-                  <i class="now-ui-icons users_single-02"></i>
                   <p>
                     <span class="d-lg-none d-md-block">Account</span>
                   </p>
@@ -148,36 +159,6 @@
         @yield('content')
 
 
-      <footer class="footer">
-        <div class=" container-fluid ">
-          <nav>
-            <ul>
-              <li>
-                <a href="https://www.creative-tim.com">
-                  Creative Tim
-                </a>
-              </li>
-              <li>
-                <a href="http://presentation.creative-tim.com">
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a href="http://blog.creative-tim.com">
-                  Blog
-                </a>
-              </li>
-            </ul>
-          </nav>
-          <div class="copyright" id="copyright">
-            &copy; <script>
-              document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
-            </script>, Designed by <a href="https://www.invisionapp.com" target="_blank">Invision</a>. Coded by <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a>.
-          </div>
-        </div>
-      </footer>
-    </div>
-  </div>
   <!--   Core JS Files   -->
   <script src="../assets/js/core/jquery.min.js"></script>
   <script src="../assets/js/core/popper.min.js"></script>
