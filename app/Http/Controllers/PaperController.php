@@ -11,7 +11,8 @@ class PaperController extends Controller
     //
     public function index()
     {
-        $papers = PastPapers::all();
+        $papers = PastPapers::with(['subject' , 'grade'])->get();
+        // dd($papers[0]->subject->name);
         return view('papers.index', compact('papers'));
     }
 
@@ -27,6 +28,8 @@ class PaperController extends Controller
             'paper_url' => 'required',
             'year' => 'required',
             'subjectId' => 'required',
+            'price' => 'required',
+            'classId' => 'required'
         ]);
 
         PastPapers::create($request->all());

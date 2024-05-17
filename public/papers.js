@@ -1,47 +1,91 @@
-// function search() {
+// nav bar
+const menu = document.querySelector('#menu');
+const navbar = document.querySelector('.navbar');
 
-//     //
-//     let input, filter, table, tr, td, txtvalue;
-//     input = document.getElementById('myinput');
-//     filter = input.value.toUpperCase();
-//     table = document.getElementById('mytable');
-//     tr = table.getElementsByTagName('tr');
+menu.addEventListener('click', () => {
+    menu.classList.toggle('fa-xmark');
+    navbar.classList.toggle('active');
+});
 
-//     for (let i = 0; i < tr.length; i++) {
-//         td = tr[i].getElementsByTagName('td')[2];
-//         if (td) {
-//             txtvalue = td.textContent || td.innerText;
-//             if (txtvalue.toUpperCase().indexOf(filter) > -1) {
-//                 tr[i].style.diplay = '';
-//             } else {
-//                 tr[i].style.display = 'none found ';
-//             }
-//         }
-//     }
+
+// object made
+
+let data = [
+    { year: '2023', exams: 'MATHS', class: 'pp1' },
+    { year: '2006', exams: 'MATHS', class: 'pp1' },
+    { year: '2003', exams: 'MATHS', class: 'pp1' },
+    { year: '2024', exams: 'MATHS', class: 'pp1' },
+    { year: '2005', exams: 'MATHS', class: 'pp1' },
+    { year: '2004', exams: 'MATHS', class: 'pp1' },
+    { year: '2015', exams: 'MATHS', class: 'pp1' },
+    { year: '2013', exams: 'MATHS', class: 'pp1' }
+
+];
+
+// function to create a card element
+
+// function createcards() {
+//     let cardcontainer = document.getElementById('cardcontainer');
+
+
+//     data.forEach(function (card) {
+//         let cardelement = document.createElement('div');
+//         cardelement.classList.add('card');
+
+//         let h31element = document.createElement('h3');
+//         h31element.textContent = 'class: ' + card.class;
+
+//         let h3element = document.createElement('h3');
+//         h3element.textContent = 'year: ' + card.year;
+
+//         let pelement = document.createElement('p');
+//         pelement.textContent = 'exams: ' + card.exams;
+
+//         let btnelement = document.createElement('button');
+//         btnelement.textContent = 'PURCHASE';
+//         btnelement.classList.add('button');
+
+//         cardelement.appendChild(h3element);
+//         cardelement.appendChild(h31element);
+//         cardelement.appendChild(pelement);
+//         cardelement.appendChild(btnelement);
+
+//         cardcontainer.appendChild(cardelement);
+//     });
 
 // }
 
-document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.search-input').forEach(inputfield => {
-        const tablerow = inputfield.closest('table').querySelectorAll('tbody > tr');
-        const headcell = inputfield.closest('th');
-        const othercell = inputfield.closest('tr').querySelectorAll('th');
-        const columnindex = Array.from(othercell).indexOf(headcell);
-        const searchcell = Array.from(tablerow)
-            .map(row => row.querySelectorAll('td')[columnindex]);
 
-        inputfield.addEventListener('input', () => {
-            const searchquery = inputfield.value.toLocaleLowerCase();
-            for (const tablecell of searchcell) {
-                const row = tablecell.closest('tr');
-                const value = tablecell.textContent.toLocaleLowerCase().replace(',', '');
-                row.style.visibility = null;
-                if (value.search(searchquery) === -1) {
-                    row.style.visibility = 'collapse';
-                }
-            }
-        });
+// function to filter the cards based on search input
+
+function filtercards() {
+    let searchinput = document.getElementById('searchinput').value.toLowerCase();
+    let cards = document.getElementsByClassName('card');
+
+    for (let i = 0; i < cards.length; i++) {
+        let card = cards[i];
+
+        let h3 = card.querySelector('h3');
+        let h3text = h3.textContent.toLowerCase();
+
+        let h31 = card.querySelector('h3');
+        let h31text = h31.textContent.toLowerCase();
+
+        let p = card.querySelector('p');
+        let ptext = p.textContent.toLowerCase();
+
+        if (h3text.includes(searchinput) || h31text.includes(searchinput) || ptext.includes(searchinput)) {
+            card.style.display = 'block';
+        } else {
+            card.style.display = 'none';
+        }
+
+    }
+}
 
 
-    });
-});
+document.getElementById('searchinput').addEventListener('input', filtercards);
+
+
+
+window.onload = createcards;

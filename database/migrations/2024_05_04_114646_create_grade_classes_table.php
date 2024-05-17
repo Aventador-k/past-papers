@@ -11,14 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('past_papers', function (Blueprint $table) {
+        Schema::create('grade_classes', function (Blueprint $table) {
             $table->id();
-            $table->string("title");
-            $table->text("paper_url");
-            $table->text("year");
-            $table->float("price");
-            $table->foreignId("subjectId")->references("id")->on("subjects");
-            $table->foreignId("classId")->references("id")->on("grade_classes");
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -28,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('past_papers');
+        Schema::dropIfExists('grade_classes');
     }
 };

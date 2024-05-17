@@ -1,53 +1,43 @@
-@extends('layout.app')
-@section('title', 'All Paper')
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../font-awesome/css/all.css" />
+    <link rel="stylesheet" href="style.css" />
+    @vite('resources/css/papers.css')
+    <title>Papers Page</title>
+  </head>
+  <body style="background-image: url(/images/chemistry.jpg)">
+    <x-nav-bar/>
+    <section class="a">
+      <div class="container-search">
+        <h1>SEARCH THE YEAR OF EXAM YOU WISH TO AQUIRE</h1>
+        <div class="search-bar">
+          <input
+            type="text"
+            class="search"
+            id="searchinput"
+            placeholder="SEARCH...."
+          />
+          <i class="fa-brands fa-searchengin" id="icon"></i>
+        </div>
+      </div>
 
-@section('content')
-    <div class="tb-conatainer">
-        <h1 class="heading">EXAMINATION PAPERS</h1>
-        <!-- <input type="text" id="myinput" onkeyup="search()" placeholder="NAME" /> -->
-
-        <table class="table" id="mytable" data-filter-control="true" data-show-search-clear-button="true">
-            <thead>
-                <tr>
-                    <th>
-                        Year
-                    </th>
-                    <th>
-                       Paper Name
-                    </th>
-                    <!-- <th>
-                <input type="text" class="search-input" placeholder="batch" />
-              </th>
-              <th>
-                <input type="text" class="search-input" placeholder="training" />
-              </th>
-              <th>
-                <input type="text" class="search-input" placeholder="status" />
-              </th> -->
-                    <th>
-                        <!-- <input type="text" class="search-input" placeholder="purchase" /> -->
-                        <u>PURCHASE</u>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($papers as $paper )
-                <tr>
-                    <td>{{ $paper->year }}</td>
-                    <td>{{ $paper->title }}</td>
-                    <td>
-                        <a href="/payments/details/{{ $paper->id }}"  class="btn">PURCHASE</a>
-                    </td>
-
-                </tr>
-                @endforeach
-
-            </tbody>
-        </table>
-    </div>
+      <div id="cardcontainer">
+        @foreach ($papers as $paper)
+        <div class="card">
+            <h3>Subject:{{ $paper->title }}</h3>
+            <h3>Year: {{ $paper->year }}</h3>
+            <p>Class:{{ $paper->grade->name }}</p>
+            <a href="/payments/details/{{ $paper->id }}">
+                <button  type="button" class="button">Purchase</button>
+            </a>
+        </div>
+        @endforeach
+      </div>
+    </section>
     <script src="/papers.js"></script>
 
-    @push('styles')
-        @vite('resources/css/papers.css')
-    @endpush
-@endsection
+  </body>
+</html>

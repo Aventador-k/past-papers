@@ -20,7 +20,7 @@ class PaymentController extends Controller
         if(!$paper){
             return view('error_pages.paper-not-found');
         }
-        return view('payments.details' , ['paperId' => $id]);
+        return view('payments.details' , ['paperId' => $id , 'paper'=>$paper]);
     }
 
     public function initiate_payment(Request $request , $id){
@@ -28,6 +28,7 @@ class PaymentController extends Controller
         $provider->setApiCredentials(config('paypal'));
         $paypalToken = $provider->getAccessToken();
 
+        $paper = PastPapers::where('id' , $id)->first();
         $response = $provider->createOrder([
             "intent" => "CAPTURE",
             "application_context" => [
@@ -38,7 +39,7 @@ class PaymentController extends Controller
                 [
                     "amount" => [
                         "currency_code" => "USD",
-                        "value" => "1"
+                        "value" => $paper->price
                     ]
                 ]
             ]
@@ -89,7 +90,7 @@ class PaymentController extends Controller
                     $paper = PastPapers::where('id' , $paperId)->first();
                     // $file = Storage::get($paper->paper_url);
 
-                    Mail::to('edwardkabwoy@gmail.com')->send(new SendPaper($paper->paper_url));
+                    Mail::to($transaction->customer_email)->send(new SendPaper($paper->paper_url , $transaction->reference_code));
                 }
             }
         }else {
