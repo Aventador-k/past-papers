@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\GradeClass;
 use App\Models\PastPapers;
 use Livewire\WithFileUploads;
 use App\Models\Subject;
@@ -14,9 +15,10 @@ class UploadPapers extends Component
 
     public $title = "";
     public $year = "";
-    public $subjectId = "";
+    public $subjectId;
+    public $price;
     public $paper;
-    public $x = "hello";
+    public $classId;
     public $uploading = false;
 
 
@@ -35,6 +37,8 @@ class UploadPapers extends Component
             'year' => 'required|integer',
             'subjectId' => 'required|integer',
             'paper' => 'required|file|mimes:pdf',
+            'price' => 'required',
+            'classId' => 'required'
         ], [
             'paper.required' => 'Please select a paper file.',
             'paper.mimes' => 'The paper must be a PDF file.',
@@ -45,8 +49,11 @@ class UploadPapers extends Component
         $all_data = [
             'title' =>$this->title,
             'year' => $this->year,
+            'classId' => $this->classId,
             'subjectId' => $this->subjectId,
             'paper_url' => $paper_path,
+            'price' => $this->price,
+            'classId' => $this->classId
         ];
 
         $video = PastPapers::create($all_data);
@@ -58,16 +65,16 @@ class UploadPapers extends Component
 
     public function updatedPaper($val)
     {
-
-
         $this->uploading = true;
         $this->uploading = false;
     }
     public function render()
     {
         $subjects = Subject::all();
-        $this->subjectId = $subjects[0]->id;
-        $this->year = Carbon::now()->year;
-        return view('livewire.upload-papers', ['subjects' => $subjects]);
+        $classes = GradeClass::all();
+        // $this->subjectId = $subjects[0]->id;
+        // $this->classId = $classes[0]->id;
+        // $this->year = Carbon::now()->year;
+        return view('livewire.upload-papers', ['subjects' => $subjects , 'classes' => $classes]);
     }
 }

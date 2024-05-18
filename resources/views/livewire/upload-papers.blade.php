@@ -53,8 +53,25 @@
 
                       @error('paper') <span class="text-red-400">{{ $message }}</span> @enderror
                     </div>
-                </div>
 
+                </div>
+                <div class="flex mb-6 space-x-4">
+                    <div class="w-full md:w-1/2">
+                        <label for="classId" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Class</label>
+                        <select wire:model='classId' id="classId" name="subjectId" required class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500">
+                            @foreach ($classes as $cl )
+                            <option value='{{ $cl->id }}'>{{ $cl->name }}</option>
+                            @endforeach
+                        </select>
+                        @error('classId') <span class="text-red-400">{{ $message }}</span> @enderror
+                    </div>
+
+                    <div class="w-full md:w-1/2">
+                        <label for="price" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Price</label>
+                        <input type="text" wire:model='price' name="price" id="price" placeholder="Price" required class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:text-dark dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" />
+                        @error('price') <span class="text-red-400">{{ $message }}</span> @enderror
+                    </div>
+                </div>
                 <div class="mb-6">
                   <button type="submit"  {{ $uploading == true ? 'disabled' : "" }} class="w-full px-3 py-4 text-white bg-indigo-500 rounded-md focus:bg-indigo-600 focus:outline-none">
                     Upload Paper

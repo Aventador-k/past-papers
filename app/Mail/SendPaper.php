@@ -15,14 +15,16 @@ class SendPaper extends Mailable
     use Queueable, SerializesModels;
 
     public $attachment;
+    public $reference_code;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($attachment)
+    public function __construct($attachment , $reference_code)
     {
         //
         $this->attachment = $attachment;
+        $this->reference_code = $reference_code;
     }
 
     /**
@@ -42,6 +44,7 @@ class SendPaper extends Mailable
     {
         return new Content(
             view: 'mail.send',
+            with: ['reference_code' => $this->reference_code]
         );
     }
 

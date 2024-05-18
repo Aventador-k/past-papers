@@ -12,6 +12,18 @@ class PastPapers extends Model
         'title',
         'paper_url',
         'year',
-        'subjectId'
+        'subjectId',
+        'classId',
+        'price',
     ];
+
+    public function grade()
+    {
+        return $this->belongsTo(GradeClass::class ,'classId');
+    }
+
+    public function subject()
+    {
+        return $this->belongsTo(Subject::class,'subjectId');
+    }
 }
