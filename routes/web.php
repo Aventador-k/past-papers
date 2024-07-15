@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Http;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PaymentController;
 use App\Models\register;
-
+use App\Models\Subject;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -26,7 +26,8 @@ use Illuminate\Support\Facades\Storage;
 */
 
 Route::get('/', function () {
-    return view('index');
+    $subjects = Subject::all();
+    return view('index' , compact('subjects'));
 });
 
 Route::get("/auth/login" , function(){

@@ -5,15 +5,17 @@ namespace App\Http\Controllers;
 use App\Models\PastPapers;
 use App\Models\Subject;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class PaperController extends Controller
 {
     //
-    public function index()
+    public function index(Request $request)
     {
-        $papers = PastPapers::with(['subject' , 'grade'])->get();
-        // dd($papers[0]->subject->name);
-        return view('papers.index', compact('papers'));
+    $subjectId = $request->query('subject');
+    $papers = PastPapers::with(['subject', 'grade'])->get();
+    // dd($papers);
+    return view('papers.index', compact('papers'));
     }
 
     public function create()

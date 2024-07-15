@@ -84,6 +84,8 @@
     </div>
   </section>
 
+  {{--  TODO USE SUBJECTID AS THE SEARCH PARAM --}}
+
   <section class="c" id="c" style="background-image: url(/images/math.jpg)">
     <div class="contain">
       <h1><u>EXAMS</u></h1>
@@ -105,14 +107,9 @@
     <dialog class="modal" id="modal">
       <h3>FROM THIS SECTION,CHOOSE THE SUBJECT</h3>
       <div class="buttons">
-        <button class="btn"><a href="/papers">MATHS</a></button>
-        <button class="btn">
-          <a href="./english/index.html">ENGLISH</a>
-        </button>
-        <button class="btn">
-          <a href="./chemistry/index.html">CHEMISTRY</a>
-        </button>
-        <button class="btn"><a href="./C.R.E/index.html">C.R.E</a></button>
+        @foreach ($subjects as $subject)
+        <button class="btn"><a href="/papers?subject={{ $subject->id }}">{{ $subject->name }}</a></button>
+        @endforeach
       </div>
       <div class="close">
         <button type="button" class="close btn">CLOSE</button>
