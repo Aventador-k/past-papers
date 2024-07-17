@@ -10,12 +10,18 @@ menu.addEventListener('click', () => {
 // modal dialog
 
 const modal = document.querySelector('#modal');
-const open = document.querySelector('.open-pp1');
+const open = document.querySelectorAll('.open-pp1');
 const close = document.querySelector('.close');
 
-open.addEventListener('click', () => {
-    modal.showModal();
+open.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        console.log(e.target.dataset)
+        modal.showModal();
+    });
 });
+// open.addEventListener('click', () => {
+//     modal.showModal();
+// });
 close.addEventListener('click', () => {
     modal.close();
 });

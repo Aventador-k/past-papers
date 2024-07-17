@@ -8,11 +8,12 @@ use Livewire\Component;
 
 class AllPapers extends Component
 {
-    public $search;
+    public $subject;
+    protected $queryString = ['subject'];
     public function render()
     {
-
-        $allpapers = PastPapers::all();
+        // dd($this->subject);
+        $allpapers = PastPapers::where('subjectId' , '=' , $this->subject)->get();
         return view('livewire.all-papers' , ['papers' =>$allpapers]);
     }
 }

@@ -82,6 +82,11 @@
     background-position: center center;
   }
 
+  .cards{
+   display: grid;
+   grid-template-columns: repeat(4, 1fr);
+  }
+
   .a .card {
     text-align: center;
     backdrop-filter: blur(10px);

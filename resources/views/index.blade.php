@@ -94,17 +94,15 @@
         Select one of the grades to procede to the next step. <br />
         <br />THNK YOU AND WELCOME. <br />
       </p>
+
       <div class="cards">
-        <button class="btn open-pp1"><a href="#">GRADE:PP1</a></button>
-        <button class="btn open-pp2"><a href="#">GRADE:PP2</a></button>
-        <button class="btn open-pp3"><a href="#">GRADE:PP3</a></button>
-        <button class="btn open-pp4"><a href="#">GRADE:PP4</a></button>
-        <button class="btn open-pp5"><a href="#">GRADE:PP5</a></button>
-        <button class="btn open-pp6"><a href="#">GRADE:PP6</a></button>
+        @foreach ($grades as $grade )
+       <livewire:grade-component grade_name="{{ $grade->name }}" gradeId="{{ $grade->id }}" />
+        @endforeach
       </div>
     </div>
 
-    <dialog class="modal" id="modal">
+    {{-- <dialog class="modal" id="modal">
       <h3>FROM THIS SECTION,CHOOSE THE SUBJECT</h3>
       <div class="buttons">
         @foreach ($subjects as $subject)
@@ -114,7 +112,7 @@
       <div class="close">
         <button type="button" class="close btn">CLOSE</button>
       </div>
-    </dialog>
+    </dialog> --}}
   </section>
 
   <section class="d" id="d" style="background-image: url(/images/netnodes.jpg)">

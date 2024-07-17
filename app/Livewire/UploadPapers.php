@@ -72,7 +72,7 @@ class UploadPapers extends Component
     {
         $subjects = Subject::all();
         $classes = GradeClass::all();
-        // $this->subjectId = $subjects[0]->id;
+        $this->subjectId = $subjects[0]->id;
         // $this->classId = $classes[0]->id;
         // $this->year = Carbon::now()->year;
         return view('livewire.upload-papers', ['subjects' => $subjects , 'classes' => $classes]);

@@ -13,8 +13,8 @@ class PaperController extends Controller
     public function index(Request $request)
     {
     $subjectId = $request->query('subject');
-    $papers = PastPapers::with(['subject', 'grade'])->get();
-    // dd($papers);
+    $gradeId = $request->query('grade');
+    $papers = PastPapers::with(['subject', 'grade'])->where('subjectId' , '=' , $subjectId)->where('classId' ,'=' , $gradeId)->get();
     return view('papers.index', compact('papers'));
     }
 

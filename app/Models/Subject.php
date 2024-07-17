@@ -13,4 +13,9 @@ class Subject extends Model
     {
         return $this->hasMany(PastPapers::class);
     }
+
+    public function grade ()
+    {
+        return $this->belongsToMany(GradeClass::class , "subject_grades" , "subjectId" , "gradeId");
+    }
 }
