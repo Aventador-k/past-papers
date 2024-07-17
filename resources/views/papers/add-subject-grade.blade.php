@@ -21,7 +21,7 @@
                   <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
                     <div class="md:col-span-5">
                       <label for="subject">Subject</label>
-                      <select name="subject" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" id="subject">
+                      <select name="subject" class="h-10 border mt-1  rounded px-4 w-full bg-gray-50" id="subject">
                         @foreach ($subjects as $subject )
                         <option type="text" name="subject" id="subject"  value="{{ $subject->id }}">{{ $subject->name }}</option>
                         @endforeach

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\PastPapers;
 use App\Models\Subject;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class PaperController extends Controller
@@ -14,7 +15,18 @@ class PaperController extends Controller
     {
     $subjectId = $request->query('subject');
     $gradeId = $request->query('grade');
-    $papers = PastPapers::with(['subject', 'grade'])->where('subjectId' , '=' , $subjectId)->where('classId' ,'=' , $gradeId)->get();
+    $papers = DB::table('past_papers')
+    ->join('subjects', 'past_papers.subjectId', '=', 'subjects.id')
+    ->join('grade_classes', 'past_papers.classId', '=', 'grade_classes.id')
+    ->where([
+        ['past_papers.subjectId', '=', $subjectId],
+        ['past_papers.classId', '=', $gradeId],
+    ])
+    ->select('past_papers.*', 'subjects.*', 'grade_classes.*')
+    ->get();
+
+
+
     return view('papers.index', compact('papers'));
     }
 

@@ -3,17 +3,29 @@
 namespace App\Livewire;
 
 use App\Models\PastPapers;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 
 class AllPapers extends Component
 {
     public $subject;
-    protected $queryString = ['subject'];
+    public $grade;
+    protected $queryString = ['subject' , 'grade'];
     public function render()
     {
-        // dd($this->subject);
-        $allpapers = PastPapers::where('subjectId' , '=' , $this->subject)->get();
+
+        $allpapers = DB::table('past_papers')
+        ->join('subjects', 'past_papers.subjectId', '=', 'subjects.id')
+        ->join('grade_classes', 'past_papers.classId', '=', 'grade_classes.id')
+        ->where([
+            ['past_papers.subjectId', '=', $this->subject],
+            ['past_papers.classId', '=', $this->grade],
+        ])
+        ->select('past_papers.*', 'subjects.*', 'grade_classes.*')
+        ->get();
+
+        // dd($allpapers);
         return view('livewire.all-papers' , ['papers' =>$allpapers]);
     }
 }

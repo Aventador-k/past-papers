@@ -14,11 +14,12 @@
     </div>
 
     <div id="cardcontainer">
+
       @foreach ($papers as $paper)
       <div class="card">
           <h3>Subject:{{ $paper->title }}</h3>
           <h3>Year: {{ $paper->year }}</h3>
-          <p>Class:{{ $paper->grade->name }}</p>
+          <p>Class:{{ $paper->name }}</p>
           <a href="/payments/details/{{ $paper->id }}">
               <button  type="button" class="button">Purchase</button>
           </a>
