@@ -7,7 +7,7 @@
           class="search"
           id="searchinput"
           placeholder="SEARCH...."
-          wire:model.live="search"
+          wire:model.live="searchWord"
         />
         <i class="fa-brands fa-searchengin" id="icon"></i>
       </div>
