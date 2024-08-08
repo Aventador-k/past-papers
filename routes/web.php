@@ -31,7 +31,7 @@ use Illuminate\Support\Facades\Storage;
 
 // Route::get("/pivot" , function(){
 //     $grade = GradeClass::find(1);
-//     $grade->subject()->attach(2);
+//     $grade->subject()->attach(1);
 //     dd($grade->subject);
 // });
 

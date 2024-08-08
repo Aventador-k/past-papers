@@ -18,7 +18,11 @@
                 </label>
                 <input
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    id="email" name="email" type="email" placeholder="Email">
+                    id="email" name="email" type="email" placeholder="Email" required>
+
+                    @error('email')
+                    <p class="text-red-500">{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="mb-4">
@@ -26,9 +30,13 @@
                     Phone Number
                 </label>
                 <input
-                    name="phone"
+
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    id="phone" type="text" placeholder="Phone Number">
+                    id="phone" type="text" placeholder="Phone Number" name="phone_number" required>
+
+                    @error('phone_number')
+                        <p class="text-red-500">{{ $message }}</p>
+                    @enderror
             </div>
 
             <div class="mb-4">

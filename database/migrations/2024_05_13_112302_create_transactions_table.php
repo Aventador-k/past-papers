@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('paperId')->references('id')->on('past_papers');
-            $table->string('customer_email',255)->unique();
-            $table->string('customer_phone',255)->unique();
+            $table->string('customer_email',255);
+            $table->string('customer_phone',255);
             $table->uuid('reference_code')->unique();
             $table->float('amount');
             $table->timestamp('date')->useCurrent();
