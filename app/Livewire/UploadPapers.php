@@ -35,7 +35,6 @@ class UploadPapers extends Component
         $validatedData = $this->validate([
             'title' => 'required|string',
             'year' => 'required|integer',
-            'subjectId' => 'required|integer',
             'paper' => 'required|file|mimes:pdf',
             'price' => 'required',
             'classId' => 'required'
@@ -72,6 +71,17 @@ class UploadPapers extends Component
     {
         $subjects = Subject::all();
         $classes = GradeClass::all();
+
+        if (empty($this->subjectId) && $subjects->isNotEmpty()) {
+            $this->subjectId = $subjects->first()->id;
+        }
+
+        if (empty($this->classId) && $classes->isNotEmpty()) {
+            $this->classId = $classes->first()->id;
+        }
+
+        $currentYear = date('Y');
+        $this->year = $currentYear;
         // $this->subjectId = $subjects[0]->id;
         // $this->classId = $classes[0]->id;
         // $this->year = Carbon::now()->year;

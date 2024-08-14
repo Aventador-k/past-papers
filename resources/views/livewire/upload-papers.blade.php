@@ -11,7 +11,7 @@
               </p>
             </div>
             <div class="m-7">
-              <form wire:submit.prevent='save' method="POST" enctype="multipart/form-data">
+              <form wire:submit.prevent='save'  method="POST" enctype="multipart/form-data">
                 <input type="checkbox" name="botcheck" id="" style="display: none;" />
                 <input type="hidden" name="redirect" value="https://web3forms.com/success">
 
@@ -23,7 +23,7 @@
                   </div>
                   <div class="w-full md:w-1/2">
                     <label for="year" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Year</label>
-                    <select id="year" wire:model='year' name="year" required class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500">
+                    <select id="year" name="year" required class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500">
                         <?php
                         $currentYear = date("Y");
                         $startYear = 1900;
@@ -39,7 +39,7 @@
                 <div class="flex mb-6 space-x-4">
                     <div class="w-full md:w-1/2">
                         <label for="subjectId" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Subject</label>
-                        <select wire:model='subjectId' id="subjectId" name="subjectId" required class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500">
+                        <select  id="subjectId" name="subjectId" required class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500">
                             @foreach ($subjects as $subject )
                             <option value='{{ $subject->id }}'>{{ $subject->name }}</option>
                             @endforeach
@@ -58,9 +58,9 @@
                 <div class="flex mb-6 space-x-4">
                     <div class="w-full md:w-1/2">
                         <label for="classId" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Class</label>
-                        <select wire:model='classId' id="classId" name="subjectId" required class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500">
+                        <select id="classId" name="subjectId" required class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500">
                             @foreach ($classes as $cl )
-                            <option value='{{ $cl->id }}'>{{ $cl->name }}</option>
+                            <option  value='{{ $cl->id }}'>{{ $cl->name }}</option>
                             @endforeach
                         </select>
                         @error('classId') <span class="text-red-400">{{ $message }}</span> @enderror

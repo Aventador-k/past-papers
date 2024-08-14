@@ -29,11 +29,12 @@ use Illuminate\Support\Facades\Storage;
 |
 */
 
-// Route::get("/pivot" , function(){
-//     $grade = GradeClass::find(1);
-//     $grade->subject()->attach(1);
-//     dd($grade->subject);
-// });
+Route::get("/pivot" , function(){
+    $subject = Subject::find(4);
+    // dd($grade);
+    $subject->grade()->sync(7, false);
+    dd($subject->grade);
+});
 
 
 

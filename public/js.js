@@ -22,6 +22,6 @@ open.forEach(btn => {
 // open.addEventListener('click', () => {
 //     modal.showModal();
 // });
-close.addEventListener('click', () => {
-    modal.close();
-});
+// close.addEventListener('click', () => {
+//     modal.close();
+// });
