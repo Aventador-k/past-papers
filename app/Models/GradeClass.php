@@ -9,6 +9,10 @@ class GradeClass extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name'
+    ];
+
     public function past_paper()
     {
         return $this->hasMany(GradeClass::class);
