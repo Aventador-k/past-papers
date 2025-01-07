@@ -61,7 +61,7 @@ class SubjectResource extends Resource
     {
         return [
             //
-            PastPaperRelationManager::class
+
         ];
     }
 

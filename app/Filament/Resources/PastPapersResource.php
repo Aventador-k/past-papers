@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\PastPapersResource\Pages;
 use App\Filament\Resources\PastPapersResource\RelationManagers;
+use App\Filament\Resources\PastPapersResource\RelationManagers\SubjectRelationManager;
 use App\Filament\Resources\SubjectResource\RelationManagers\PastPaperRelationManager;
 use App\Models\GradeClass;
 use App\Models\PastPapers;
@@ -69,7 +70,7 @@ class PastPapersResource extends Resource
     public static function getRelations(): array
     {
         return [
-
+            SubjectRelationManager::class
 
             //
         ];
