@@ -6,8 +6,10 @@ use App\Mail\SendPaper;
 use App\Models\PastPapers;
 use App\Models\Payment;
 use App\Models\Transaction;
+use Exception;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
@@ -24,6 +26,11 @@ class PaymentController extends Controller
     }
 
     public function initiate_payment(Request $request , $id){
+
+        $validatedInput = $request->validate([
+            'email' => 'required|email',
+            'phone' => 'required|numeric'
+        ]);
         $provider = new PayPalClient;
         $provider->setApiCredentials(config('paypal'));
         $paypalToken = $provider->getAccessToken();
@@ -48,8 +55,8 @@ class PaymentController extends Controller
             foreach($response['links'] as $link){
                 if($link["rel"] == 'approve'){
                     session()->put([
-                        'email' => $request->email,
-                        'phone_number' =>  $request->phone,
+                        'email' => $validatedInput['email'],
+                        'phone_number' =>  $validatedInput['phone_number'],
                         'paperId' => $id,
                     ]);
                     // $request->request->add(['email' => $request->email]);
@@ -77,20 +84,39 @@ class PaymentController extends Controller
                 foreach($unit['payments']['captures'] as $u){
                     // dd($u['amount']['value']);
                     // dd($paperId);
-                    $transaction = Transaction::create([
-                        'paperId' => $paperId,
-                        'customer_email' => $email,
-                        'customer_phone' => $phone,
-                        'amount' => $u['amount']['value']
-                    ]);
-                    $payment = Payment::create([
-                        'transactionId' => $transaction->id,
-                        'amount' => $transaction->amount
-                    ]);
-                    $paper = PastPapers::where('id' , $paperId)->first();
-                    // $file = Storage::get($paper->paper_url);
 
-                    Mail::to($transaction->customer_email)->send(new SendPaper($paper->paper_url , $transaction->reference_code));
+                    DB::transaction(function () use($paperId , $email , $phone , $u) {
+
+                        try {
+                            $transaction = Transaction::create([
+                                'paperId' => $paperId,
+                                'customer_email' => $email,
+                                'customer_phone' => $phone,
+                                'amount' => $u['amount']['value']
+                            ]);
+                        } catch (\Throwable $th) {
+
+                            return redirect("/payments/cancel")->with('transaction_fail' ,"Failed to Save Transaction");
+                            //throw $th;
+                        }
+
+                        try {
+                            $payment = Payment::create([
+                                'transactionId' => $transaction->id,
+                                'amount' => $transaction->amount
+                            ]);
+                            $paper = PastPapers::where('id' , $paperId)->first();
+                            // $file = Storage::get($paper->paper_url);
+
+                            Mail::to($transaction->customer_email)->send(new SendPaper($paper->paper_url , $transaction->reference_code));
+                        } catch (\Throwable $th) {
+
+                            return redirect("/payments/cancel")->with('payment_fail' ,"Failed to Save Payment");
+                            //throw $th;
+                        }
+
+                    });
+
                 }
             }
         }else {

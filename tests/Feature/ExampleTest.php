@@ -16,4 +16,12 @@ class ExampleTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+    public function test_the_login_render_page_returns_a_successful_response(){
+
+        $response = $this->get("/auth/login");
+
+        $response->assertStatus(200);
+
+    }
 }

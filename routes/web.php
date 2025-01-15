@@ -7,10 +7,14 @@ use Illuminate\Support\Facades\Http;
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PaymentController;
+use App\Models\GradeClass;
 use App\Models\register;
-
+use App\Models\Subject;
+use App\Models\Subject_Grade;
+use App\Models\SubjectGrades;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
@@ -25,8 +29,31 @@ use Illuminate\Support\Facades\Storage;
 |
 */
 
+Route::get("/pivot" , function(){
+    $subject = Subject::find(4);
+    // dd($grade);
+    $subject->grade()->sync(7, false);
+    dd($subject->grade);
+});
+
+
+
+Route::get("/add/subjects" , function(){
+    $subjects = Subject::all();
+    $grades = GradeClass::all();
+   return view('papers.add-subject-grade' , compact('subjects' , 'grades'));
+});
+
+Route::post("/add/subjects" , function(Request $request){
+    $subject = Subject::find($request->subject);
+    $subject->grade()->attach($request->grade);
+    return redirect()->back();
+});
+
 Route::get('/', function () {
-    return view('index');
+    $subjects = Subject::all();
+    $grades = GradeClass::all();
+    return view('index' , compact('subjects' , 'grades'));
 });
 
 Route::get("/auth/login" , function(){
@@ -112,6 +139,21 @@ Route::get('/products', function () {
 });
 Route::get('/orders', function () {
     return view('admins.orders');
+});
+
+Route::get("/grade/subjects/{id}" , function($id){
+
+    $subjects = DB::table('subject_grades')
+    ->join('subjects', 'subjects.id', '=', 'subject_grades.subjectId')
+    ->join('grade_classes', 'grade_classes.id', '=', 'subject_grades.gradeId')
+    ->where('subject_grades.gradeId' , '=' , $id)
+    ->select('subject_grades.*', 'subjects.name')
+    ->get();
+    // dd($subjects);
+    // $grade = GradeClass::find($id);
+    // $subjects = $grade->subject;
+    // dd($subjects);
+    return view('papers.subjects', compact('subjects'));
 });
 // i tried adding this as a route , didnt manage, check on how we can manage to add the dashboard
 // Route::get('/upload-papers', function () {

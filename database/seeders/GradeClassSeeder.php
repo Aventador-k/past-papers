@@ -15,11 +15,17 @@ class GradeClassSeeder extends Seeder
     {
         //
         DB::table('grade_classes')->insert([
-            ['name' => 'PP1', 'created_at' => now()],
-            ['name' => 'PP2' ,'created_at' => now()],
-            ['name' => 'PP3','created_at' => now()],
-            ['name' => 'GRADE4', 'created_at' => now()],
-            ['name' => 'GRADE5' ,'created_at' => now()],
+            ['name' => 'GRADE 1', 'created_at' => now()],
+            ['name' => 'GRADE 2' ,'created_at' => now()],
+            ['name' => 'GRADE 3','created_at' => now()],
+            ['name' => 'GRADE 4', 'created_at' => now()],
+            ['name' => 'GRADE 5' ,'created_at' => now()],
+            ['name' => 'GRADE 6' ,'created_at' => now()],
+            ['name' => 'GRADE 7' ,'created_at' => now()],
+            ['name' => 'GRADE 8' ,'created_at' => now()],
+            ['name' => 'GRADE 9' ,'created_at' => now()],
         ]);
+
+        
     }
 }
