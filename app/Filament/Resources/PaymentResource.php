@@ -2,30 +2,28 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\GradeClassResource\Pages;
-use App\Filament\Resources\GradeClassResource\RelationManagers;
-use App\Models\GradeClass;
+use App\Filament\Resources\PaymentResource\Pages;
+use App\Filament\Resources\PaymentResource\RelationManagers;
+use App\Models\Payment;
 use Filament\Forms;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
-use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class GradeClassResource extends Resource
+class PaymentResource extends Resource
 {
-    protected static ?string $model = GradeClass::class;
+    protected static ?string $model = Payment::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-currency-dollar';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                TextInput::make('name')
+                //
             ]);
     }
 
@@ -33,7 +31,7 @@ class GradeClassResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('name')->searchable()->sortable()
+                //
             ])
             ->filters([
                 //
@@ -58,9 +56,9 @@ class GradeClassResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListGradeClasses::route('/'),
-            'create' => Pages\CreateGradeClass::route('/create'),
-            'edit' => Pages\EditGradeClass::route('/{record}/edit'),
+            'index' => Pages\ListPayments::route('/'),
+            'create' => Pages\CreatePayment::route('/create'),
+            'edit' => Pages\EditPayment::route('/{record}/edit'),
         ];
     }
 }

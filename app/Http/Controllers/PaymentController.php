@@ -19,10 +19,13 @@ class PaymentController extends Controller
     //
     public function render_details_form(Request $request , $id){
         $paper = PastPapers::where('id' , $id)->first();
+
         if(!$paper){
             return view('error_pages.paper-not-found');
         }
-        return view('payments.details' , ['paperId' => $id , 'paper'=>$paper]);
+
+        
+        return view('payments.details' , ['paperId' => $paper->id , 'paper'=>$paper]);
     }
 
     public function initiate_payment(Request $request , $id){

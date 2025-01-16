@@ -20,7 +20,7 @@
           <h3>Subject:{{ $paper->title }}</h3>
           <h3>Year: {{ $paper->year }}</h3>
           <p>Class:{{ $paper->name }}</p>
-          <a href="/payments/details/{{ $paper->id }}">
+          <a href="/payments/details/{{ $paper->paperId }}">
               <button  type="button" class="button">Purchase</button>
           </a>
       </div>
