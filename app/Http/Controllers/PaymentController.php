@@ -24,7 +24,6 @@ class PaymentController extends Controller
             return view('error_pages.paper-not-found');
         }
 
-        
         return view('payments.details' , ['paperId' => $paper->id , 'paper'=>$paper]);
     }
 
@@ -32,8 +31,9 @@ class PaymentController extends Controller
 
         $validatedInput = $request->validate([
             'email' => 'required|email',
-            'phone' => 'required|numeric'
+            'phone_number' => 'required|string'
         ]);
+
         $provider = new PayPalClient;
         $provider->setApiCredentials(config('paypal'));
         $paypalToken = $provider->getAccessToken();

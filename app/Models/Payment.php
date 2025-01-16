@@ -13,4 +13,8 @@ class Payment extends Model
         'amount',
         'transactionId',
     ];
+
+    public function transaction(){
+        return $this->belongsTo(Transaction::class , 'transactionId');
+    }
 }

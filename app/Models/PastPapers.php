@@ -26,4 +26,8 @@ class PastPapers extends Model
     {
         return $this->belongsTo(Subject::class,'subjectId');
     }
+
+    public function transaction(){
+        return $this->hasMany(Transaction::class);
+    }
 }
