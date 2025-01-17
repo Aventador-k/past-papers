@@ -51,7 +51,9 @@ class PastPapersResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('title')
+                TextColumn::make('title'),
+                TextColumn::make('price'),
+                TextColumn::make('paper_url'),
 
             ])
             ->filters([

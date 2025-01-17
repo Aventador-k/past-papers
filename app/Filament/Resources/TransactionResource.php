@@ -2,11 +2,10 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\GradeClassResource\Pages;
-use App\Filament\Resources\GradeClassResource\RelationManagers;
-use App\Models\GradeClass;
+use App\Filament\Resources\TransactionResource\Pages;
+use App\Filament\Resources\TransactionResource\RelationManagers;
+use App\Models\Transaction;
 use Filament\Forms;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -15,17 +14,17 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class GradeClassResource extends Resource
+class TransactionResource extends Resource
 {
-    protected static ?string $model = GradeClass::class;
+    protected static ?string $model = Transaction::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-arrows-right-left';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                TextInput::make('name')
+                //
             ]);
     }
 
@@ -33,7 +32,10 @@ class GradeClassResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('name')->searchable()->sortable()
+                //
+                TextColumn::make('id'),
+                TextColumn::make('reference_code'),
+                TextColumn::make('amount')
             ])
             ->filters([
                 //
@@ -58,9 +60,9 @@ class GradeClassResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListGradeClasses::route('/'),
-            'create' => Pages\CreateGradeClass::route('/create'),
-            'edit' => Pages\EditGradeClass::route('/{record}/edit'),
+            'index' => Pages\ListTransactions::route('/'),
+            'create' => Pages\CreateTransaction::route('/create'),
+            'edit' => Pages\EditTransaction::route('/{record}/edit'),
         ];
     }
 }

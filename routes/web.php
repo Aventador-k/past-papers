@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Http;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PaymentController;
 use App\Models\GradeClass;
+use App\Models\Payment;
 use App\Models\register;
 use App\Models\Subject;
 use App\Models\Subject_Grade;
@@ -51,6 +52,7 @@ Route::post("/add/subjects" , function(Request $request){
 });
 
 Route::get('/', function () {
+    dd(Payment::with('transaction')->get());
     $subjects = Subject::all();
     $grades = GradeClass::all();
     return view('index' , compact('subjects' , 'grades'));

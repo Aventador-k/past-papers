@@ -23,9 +23,9 @@ class AllPapers extends Component
             ['past_papers.classId', '=', $this->grade],
             ['past_papers.title', 'like', "%".$this->searchWord."%"],
         ])
-        ->select('past_papers.*', 'subjects.*', 'grade_classes.*')
+        ->select('past_papers.*', 'past_papers.id as paperId' , 'subjects.id as subjectId' , 'subjects.*', 'grade_classes.*' , 'grade_classes.id as gradeId')
         ->get();
-        // dd($allpapers);
+        //  dd($allpapers);
         return view('livewire.all-papers' , ['papers' => $allpapers]);
     }
 }

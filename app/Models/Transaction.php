@@ -18,6 +18,15 @@ class Transaction extends Model
         'amount'
     ];
 
+
+    public function payment(){
+        return $this->hasMany(Payment::class);
+    }
+
+    public function past_paper(){
+        return $this->belongsTo(PastPapers::class , 'paperId');
+    }
+
     public static function boot(): void
     {
         parent::boot();
